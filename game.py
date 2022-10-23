@@ -76,7 +76,7 @@ class Game:
         pygame.draw.line(self.surface,btn_color,(cx+btn_size,cy-btn_size),(cx-btn_size,cy+btn_size),int(size*0.2))
 
 
-    def _draw_o_btn_cell(self, position, size, cell_color, btn_color=BUTTON_COLOR):
+    def _draw_o_btn_cell(self, position, size, cell_color=AVAILABLE_COLOR, btn_color=BUTTON_COLOR):
         self._draw_sqr_cell(position,size,cell_color)
         cx = position[0]+size/2
         cy = position[1]+size/2
@@ -117,9 +117,13 @@ class Game:
                         self._draw_splited_btn_cell(position=(start_x,start_y),
                             size=self.square_size-1,cell_color=AVAILABLE_COLOR)
 
-                    if cell_type == Blozorx.CELL_TYPE_INT_MAP['flexible']:
+                    elif cell_type == Blozorx.CELL_TYPE_INT_MAP['flexible']:
                         self._draw_sqr_cell(position=(start_x,start_y),
                             size=self.square_size-1,color=FLEXIBLE_CELL_COLOR)
+
+                    elif cell_type == Blozorx.CELL_TYPE_INT_MAP['fragile']:
+                        self._draw_sqr_cell(position=(start_x,start_y),
+                            size=self.square_size-1,color=FRAGILE_CELL_COLOR)
 
 
     def _draw_goal(self):

@@ -32,6 +32,12 @@ class State:
         return self.is_standing_state() \
             and self.cur == self.goal
 
+    def is_cell_available(self,x,y):
+        try:
+            return self.board_state[x,y]
+        except:
+            pass
+
 
 class Blozorx:
     TRIGGER_TYPE_INT_MAP = {
@@ -94,7 +100,54 @@ class Blozorx:
                                 board_state = self.level.board)
     
     def get_possible_actions(self, state:State):
-        possile_actions = [Action.UP,Action.DOWN,Action.LEFT,Action.RIGHT]
+        possile_actions = []
+
+        if state.is_standing_state():
+            x,y = state.cur
+            if state.is_cell_available(x-2,y) and state.is_cell_available(x-1,y):
+                possile_actions.append(Action.UP)
+            if state.is_cell_available(x+1,y) and state.is_cell_available(x+2,y):
+                possile_actions.append(Action.DOWN)
+            if state.is_cell_available(x,y-2) and state.is_cell_available(x,y-1):
+                possile_actions.append(Action.LEFT)
+            if state.is_cell_available(x,y+1) and state.is_cell_available(x,y+2):
+                possile_actions.append(Action.RIGHT)
+
+        elif state.is_lying_state():        
+            x0,y0,x1,y1 = state.cur
+            # lying on row
+            if x0 == x1:
+                if state.is_cell_available(x0-1,y0) and state.is_cell_available(x1-1,y1):
+                    possile_actions.append(Action.UP)
+                if state.is_cell_available(x0+1,y0) and state.is_cell_available(x1+1,y1):
+                    possile_actions.append(Action.DOWN)
+                if state.is_cell_available(x0,y0-1) and self.board[x0,y0-1,0] != self.CELL_TYPE_INT_MAP['fragile']:
+                    possile_actions.append(Action.LEFT)
+                if state.is_cell_available(x0,y1+1) and self.board[x0,y1+1,0] != self.CELL_TYPE_INT_MAP['fragile']:
+                    possile_actions.append(Action.RIGHT)
+            else:
+                if state.is_cell_available(x0-1,y0) and self.board[x0-1,y0,0] != self.CELL_TYPE_INT_MAP['fragile']:
+                    possile_actions.append(Action.UP)
+                if state.is_cell_available(x1+1,y0) and self.board[x1+1,y0,0] != self.CELL_TYPE_INT_MAP['fragile']:
+                    possile_actions.append(Action.DOWN)
+                if state.is_cell_available(x0,y0-1) and state.is_cell_available(x1,y1-1):
+                    possile_actions.append(Action.LEFT)
+                if state.is_cell_available(x0,y0+1) and state.is_cell_available(x1,y1+1):
+                    possile_actions.append(Action.RIGHT)
+
+        else:  # block is splited
+            x,y,_,_ = state.cur
+
+            if action == Action.UP:
+                pass
+            if action == Action.DOWN:
+                pass
+            if action == Action.LEFT:
+                pass
+            if action == Action.RIGHT:
+                pass
+            
+        # print(possile_actions)
         return possile_actions
 
     def _move_block(self, state:State, action):
@@ -174,14 +227,12 @@ class Blozorx:
         if trigger_type == self.TRIGGER_TYPE_INT_MAP['toggle']:
             for tx,ty in self.btn_target_map[(x,y)]:
                 state.board_state[tx,ty] = not state.board_state[tx,ty]
-                print(state.board_state[tx,ty])
 
         if state.btn_state[(x,y)] != -1:
             state.btn_state[(x,y)] -= 1
 
 
     def _trigger_button(self, state):
-        print(state.cur)
         if state.is_standing_state():
             x,y = state.cur
             self._trigger_o_btn_if_possible(x, y, state)
@@ -220,4 +271,3 @@ class Blozorx:
 if __name__ == '__main__':
     level = Level(1)
     state = State.load_state_from_level(level)
-    print(state.is_plitted_state())

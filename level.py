@@ -9,14 +9,14 @@ class Level:
     def load_level(self, path_to_level):
         with open(path_to_level,'r') as file:
             json_obj = json.load(file)
-            
-        self.board = np.asarray(json_obj.get('map'), dtype=np.bool)
+        self.board = np.asarray(json_obj.get('map'), dtype=bool)
         self.size_y, self.size_x = self.board.shape
         
         self.start = json_obj.get('start')
         self.goal = json_obj.get('end')
 
-        self.fragile_cells = json_obj.get('fragile_cells')
+        tmp_board = np.asarray(json_obj.get('map'), dtype=int)
+        self.fragile_cells = [(r,c) for r,c in zip(*np.where(tmp_board == 2))]
 
         self.x_btn_list = json_obj.get('x_btn_list')
         self.o_btn_list = json_obj.get('o_btn_list')
@@ -24,7 +24,7 @@ class Level:
 
 
 if __name__ == '__main__':
-    level = Level(1)
+    level = Level(4)
     print('Level',f'{level.level:02d}')
     print('Start:',level.start)
     print('Goal :',level.goal)
