@@ -97,7 +97,7 @@ class Blozorx:
                                 board_state = self.level.board)
     
     def get_possible_actions(self, state:State):
-        possile_actions = [Action.SWITCH]
+        possile_actions = []
 
         if state.is_standing_state():
             x,y = state.cur
@@ -134,6 +134,7 @@ class Blozorx:
 
         else:  # block is splited
             x,y,_,_ = state.cur
+            possile_actions.append(Action.SWITCH)
             if state.is_cell_available(x-1,y):
                 possile_actions.append(Action.UP)
             if state.is_cell_available(x+1,y):
@@ -144,6 +145,7 @@ class Blozorx:
                 possile_actions.append(Action.RIGHT)
             
         # print(possile_actions)
+        # possile_actions = [Action.UP,Action.DOWN,Action.LEFT,Action.RIGHT,Action.SWITCH]
         return possile_actions
 
     def _move_block(self, state:State, action):
@@ -282,4 +284,4 @@ class Blozorx:
 
 
 if __name__ == '__main__':
-    problem = Blozorx()
+    problem = Blozorx(10)

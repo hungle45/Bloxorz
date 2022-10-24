@@ -170,7 +170,7 @@ class Game:
             self.over = True
             msg = f'Win at {self.moves} moves. Press ESC to go back.'
         else:
-            msg = f'Moves: {self.moves:06d}'
+            msg = f'Moves: {self.moves:05d}'
 
         text = self.FONT.render(msg, 230, (255, 255, 255))
         text_rect = text.get_rect(center=(self.W_WIDTH_SIZE/2, self.W_HEIGHT_SIZE - 35))
