@@ -7,6 +7,7 @@ from problem import Action,Blozorx,State
 
 AVAILABLE_COLOR = (255, 255, 255)
 BLOCK_COLOR = (255,20,60)
+UNCONTROLLED_BLOCK_COLOR = (179,14,42)
 GOAL_COLOR = (50,205,50)
 BUTTON_COLOR = (105,105,105)
 FLEXIBLE_CELL_COLOR = (150,150,150)
@@ -26,7 +27,7 @@ class Game:
         self.state = copy.deepcopy(self.problem.init_state)
 
         # drawing
-        self.square_size = min(50, 700/max(self.problem.level.size_x,self.problem.level.size_y))
+        self.square_size = min(50, 700//max(self.problem.level.size_x,self.problem.level.size_y))
         self.starting_x = self.CENTER_X - self.problem.level.size_x / 2 * self.square_size
         self.starting_y = self.CENTER_Y - self.problem.level.size_y / 2 * self.square_size
         self.ending_x   = self.CENTER_X + self.problem.level.size_x / 2 * self.square_size
@@ -55,6 +56,11 @@ class Game:
                         self.moves += 1
                 elif not self.over and event.key == pygame.K_DOWN:
                     can_do,_ = self.problem.do_action_if_possible(self.state, Action.DOWN, True)
+                    if can_do:
+                        self.moves += 1
+
+                elif not self.over and event.key == pygame.K_SPACE:
+                    can_do,_ = self.problem.do_action_if_possible(self.state, Action.SWITCH, True)
                     if can_do:
                         self.moves += 1
 
@@ -148,7 +154,10 @@ class Game:
             self._draw_sqr_cell(position=(x1,y1),size=self.square_size-1,color=BLOCK_COLOR)
             
             if self.state.is_lying_state():
+                self._draw_sqr_cell(position=(x1,y1),size=self.square_size-1,color=BLOCK_COLOR)
                 self._draw_sqr_cell(position=((x0+x1)/2,(y0+y1)/2),size=self.square_size-1,color=BLOCK_COLOR)
+            else: # splited state
+                self._draw_sqr_cell(position=(x1,y1),size=self.square_size-1,color=UNCONTROLLED_BLOCK_COLOR)
 
     def draw(self):
         self.surface.fill(GAME_COLOR_BACKGROUND)

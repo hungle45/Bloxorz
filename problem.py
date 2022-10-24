@@ -33,10 +33,9 @@ class State:
             and self.cur == self.goal
 
     def is_cell_available(self,x,y):
-        try:
-            return self.board_state[x,y]
-        except:
-            pass
+        return (0 <= x < self.board_state.shape[0])\
+            and (0 <= y < self.board_state.shape[1])\
+            and self.board_state[x,y]
 
 
 class Blozorx:
@@ -89,8 +88,6 @@ class Blozorx:
 
         for x,y,trigger_num,target_list in self.level.split_btn_list:
             self.board[x,y,0] = self.CELL_TYPE_INT_MAP['split_btn']
-            for tx,ty in target_list:
-                self.board[tx,ty,0] = self.CELL_TYPE_INT_MAP['flexible']
             self.btn_target_map[(x,y)] = target_list
             btn_trigger_num[(x,y)] = trigger_num
 
@@ -100,7 +97,7 @@ class Blozorx:
                                 board_state = self.level.board)
     
     def get_possible_actions(self, state:State):
-        possile_actions = []
+        possile_actions = [Action.SWITCH]
 
         if state.is_standing_state():
             x,y = state.cur
@@ -137,15 +134,14 @@ class Blozorx:
 
         else:  # block is splited
             x,y,_,_ = state.cur
-
-            if action == Action.UP:
-                pass
-            if action == Action.DOWN:
-                pass
-            if action == Action.LEFT:
-                pass
-            if action == Action.RIGHT:
-                pass
+            if state.is_cell_available(x-1,y):
+                possile_actions.append(Action.UP)
+            if state.is_cell_available(x+1,y):
+                possile_actions.append(Action.DOWN)
+            if state.is_cell_available(x,y-1):
+                possile_actions.append(Action.LEFT)
+            if state.is_cell_available(x,y+1):
+                possile_actions.append(Action.RIGHT)
             
         # print(possile_actions)
         return possile_actions
@@ -184,16 +180,21 @@ class Blozorx:
                     state.cur = [x0,y0+1,x1,y1+1]
         # block is splited
         else:  
-            x,y,_,_ = state.cur
+            x0,y0,x1,y1 = state.cur
 
             if action == Action.UP:
-                pass
+                state.cur = [x0-1,y0,x1,y1]
             elif action == Action.DOWN:
-                pass
+                state.cur = [x0+1,y0,x1,y1]
             elif action == Action.LEFT:
-                pass
+                state.cur = [x0,y0-1,x1,y1]
             elif action == Action.RIGHT:
-                pass
+                state.cur = [x0,y0+1,x1,y1]
+            
+            if not state.is_plited_state():
+                x0,y0,x1,y1 = state.cur
+                state.cur = [min(x0,x1),min(y0,y1),max(x0,x1),max(y0,y1)]
+                
 
     def _trigger_o_btn_if_possible(self, x, y, state:State):
         if self.board[x,y,0] != self.CELL_TYPE_INT_MAP['o_btn']\
@@ -231,18 +232,28 @@ class Blozorx:
         if state.btn_state[(x,y)] != -1:
             state.btn_state[(x,y)] -= 1
 
+    def _trigger_split_btn_if_possible(self, x, y, state:State):
+        if self.board[x,y,0] != self.CELL_TYPE_INT_MAP['split_btn']\
+            or state.btn_state[(x,y)] == 0: return
+        
+        state.cur = self.btn_target_map[(x,y)][0] + self.btn_target_map[(x,y)][1]
+
+        if state.btn_state[(x,y)] != -1:
+            state.btn_state[(x,y)] -= 1
 
     def _trigger_button(self, state):
         if state.is_standing_state():
             x,y = state.cur
             self._trigger_o_btn_if_possible(x, y, state)
             self._trigger_x_btn_if_possible(x, y, state)
+            self._trigger_split_btn_if_possible(x, y, state)
         elif state.is_lying_state():
             x0,y0,x1,y1 = state.cur
             self._trigger_o_btn_if_possible(x0, y0, state)
             self._trigger_o_btn_if_possible(x1, y1, state)
-        else:
-            pass
+        else: # split state
+            x,y,_,_ = state.cur
+            self._trigger_o_btn_if_possible(x, y, state)
 
     def do_action(self, state:State, action, inplace=False):
         if not inplace:
@@ -252,8 +263,10 @@ class Blozorx:
             if state.is_plited_state():
                 state.cur = state.cur[2:]+state.cur[:2]
         else:
+            is_split_state = state.is_plited_state()
             self._move_block(state, action)
-            self._trigger_button(state)
+            if not is_split_state or state.is_plited_state():
+                self._trigger_button(state)
 
         if not inplace:
             return state
@@ -269,5 +282,4 @@ class Blozorx:
 
 
 if __name__ == '__main__':
-    level = Level(1)
-    state = State.load_state_from_level(level)
+    problem = Blozorx()
