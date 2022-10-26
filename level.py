@@ -24,7 +24,7 @@ class Level:
 
 
 if __name__ == '__main__':
-    level = Level(4)
+    level = Level(10)
     print('Level',f'{level.level:02d}')
     print('Start:',level.start)
     print('Goal :',level.goal)
