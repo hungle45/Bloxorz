@@ -256,4 +256,4 @@ class Blozorx:
 
 
 if __name__ == '__main__':
-    problem = Blozorx(2)
+    problem = Blozorx(15)
