@@ -1,6 +1,8 @@
 import pygame
 import time
-from collections import deque
+from collections import deque,defaultdict
+
+import numpy as np
 
 from problem import Action,Blozorx,State
 
@@ -26,22 +28,32 @@ class Algorithm:
 
         q = deque()
         q.append(('',state))
-        visited = []
+        visited = defaultdict(list)
+
+        def _is_visited(state: State):
+            nonlocal visited
+            for visited_board in visited[tuple(state.cur)]:
+                if np.array_equal(state.board_state,visited_board):
+                    return True
+            return False
+
+        def _add_visited_state(state: State):
+            nonlocal visited
+            visited[tuple(state.cur)].append(state.board_state)
 
         while len(q) > 0:
             path,cur_state = q.popleft()
             explore_node_num += 1
 
-            
             for action in problem.get_possible_actions(cur_state):
                 next_state = problem.do_action(cur_state, action, inplace=False)
                 
                 if next_state.is_goal_state():
                     return explore_node_num, path+action[0], time.time() - start_time
-                if next_state in visited: 
+                if _is_visited(next_state): 
                     continue
 
-                visited.append(next_state)
+                _add_visited_state(next_state)
                 q.append((path+action[0],next_state))
         
         return explore_node_num, None, time.time() - start_time
@@ -60,5 +72,5 @@ if __name__ == '__main__':
             f.write(f'Explored: {explore_node_num} nodes\n')
             f.write(f'Step num: {len(path)}\n')
             f.write(f'Step : {"-".join(path)}\n')
-            f.write(f'Time : {exe_time:0.2f}s\n\n')
-            print(f'Level {level+1:02d} {exe_time:0.2f}s')
+            f.write(f'Time : {exe_time:0.3f}s\n\n')
+            print(f'Level {level+1:02d} {exe_time:0.3f}s')
