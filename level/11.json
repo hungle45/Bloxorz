@@ -3,7 +3,7 @@
     "end": [1,2],
     "x_btn_list": [],
     "o_btn_list": [
-        [6,6,"hide",-1,[[0,4],[1,4]]]
+        [6,6,[[0,4,"hide"],[1,4,"hide"]]]
     ],
     "split_btn_list": [],
     "map": [

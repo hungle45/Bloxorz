@@ -2,8 +2,8 @@
     "start": [6,2],
     "end": [4,4],
     "x_btn_list": [
-        [2,6,"toggle",-1,[[2,12]]],
-        [0,12,"toggle",-1,[[4,6]]]
+        [2,6,[[2,12,"toggle"]]],
+        [0,12,[[4,6,"toggle"]]]
     ],
     "o_btn_list": [],
     "split_btn_list": [],

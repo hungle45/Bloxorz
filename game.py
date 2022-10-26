@@ -105,7 +105,7 @@ class Game:
                 start_y = self.starting_y+1+y*self.square_size
 
                 if self.state.board_state[y,x]: # is available
-                    cell_type = self.problem.board[y,x,0]
+                    cell_type = self.problem.board[y,x]
 
                     if cell_type == Blozorx.CELL_TYPE_INT_MAP['normal']:
                         self._draw_sqr_cell(position=(start_x,start_y),

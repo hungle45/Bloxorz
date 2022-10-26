@@ -2,7 +2,7 @@
     "start": [3,1],
     "end": [3,13],
     "x_btn_list": [
-        [4,9,"toggle",-1,[[6,3]]]
+        [4,9,[[6,3,"toggle"]]]
     ],
     "o_btn_list": [],
     "split_btn_list": [],

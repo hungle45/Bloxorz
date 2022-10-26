@@ -2,10 +2,10 @@
     "start": [4,1],
     "end": [1,13],
     "x_btn_list": [
-        [1,8,"toggle",-1,[[4,10],[4,11]]]
+        [1,8,[[4,10,"toggle"],[4,11,"toggle"]]]
     ],
     "o_btn_list": [
-        [2,2,"toggle",-1,[[4,4],[4,5]]]
+        [2,2,[[4,4,"toggle"],[4,5,"toggle"]]]
     ],
     "split_btn_list": [],
     "map": [
