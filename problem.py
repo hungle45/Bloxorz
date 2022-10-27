@@ -9,6 +9,24 @@ class Action:
     DOWN  = 'DOWN'
     SWITCH = 'SWITCH'
 
+    @staticmethod
+    def is_opposite_action(a1: str, a2):
+        if a1 == Action.DOWN:
+            return a2 == Action.UP
+        if a1 == Action.UP:
+            return a2 == Action.DOWN
+        if a1 == Action.LEFT:
+            return a2 == Action.RIGHT
+        if a1 == Action.RIGHT:
+            return a2 == Action.LEFT
+        if a1 == Action.SWITCH:
+            return a2 == Action.SWITCH
+        return False
+
+    @staticmethod
+    def get_action_set():
+        return [Action.UP,Action.DOWN,Action.LEFT,Action.RIGHT,Action.SWITCH]
+
 
 class State:
     def __init__(self, cur:list, goal: list, board_state: dict):
@@ -35,6 +53,10 @@ class State:
         return (0 <= x < self.board_state.shape[0])\
             and (0 <= y < self.board_state.shape[1])\
             and self.board_state[x,y]
+
+    def __eq__(self, other):
+        return np.array_equal(self.board_state,other.board_state) \
+            and self.cur == other.cur
 
 
 class Blozorx:
@@ -198,7 +220,7 @@ class Blozorx:
             elif trigger_type == self.TRIGGER_TYPE_INT_MAP['unhide']:
                 state.board_state[tx,ty] = True
             elif trigger_type == self.TRIGGER_TYPE_INT_MAP['toggle']:
-                state.board_state[tx,ty] = not state.board_state[tx,ty]
+                state.board_state[tx,ty] ^= True
         
     def _trigger_x_btn_if_possible(self, x, y, state:State):
         if self.board[x,y] != self.CELL_TYPE_INT_MAP['x_btn']: return
@@ -209,7 +231,7 @@ class Blozorx:
             elif trigger_type == self.TRIGGER_TYPE_INT_MAP['unhide']:
                 state.board_state[tx,ty] = True
             elif trigger_type == self.TRIGGER_TYPE_INT_MAP['toggle']:
-                state.board_state[tx,ty] = not state.board_state[tx,ty]
+                state.board_state[tx,ty] ^= True
 
     def _trigger_split_btn_if_possible(self, x, y, state:State):
         if self.board[x,y] != self.CELL_TYPE_INT_MAP['split_btn']: return
@@ -256,4 +278,7 @@ class Blozorx:
 
 
 if __name__ == '__main__':
-    problem = Blozorx(2)
+    # p1 = Blozorx(2)
+    # p2 = Blozorx(2)
+    # print(p1.do_action(p1.init_state,'UP',inplace=False) == p2.init_state)
+    print(Action.is_opposite_action(Action.UP, Action.UP))
