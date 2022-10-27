@@ -5,6 +5,7 @@ import pygame
 import pygame_menu
 
 from game import Game
+from algorithm import AlgorithmStats,AlgorithmShow
 
 # Global Variables
 CURRENT_STATE = 'MENU'
@@ -67,9 +68,9 @@ def level_chosen_btn_effect(is_select,widget,menu):
 # -----------------------------------------------------------------------------
 # Free play menu
 def free_play_chosen_level(level_id):
-    global GAME, CURRENT_STATE
+    global GAME, CURRENT_STATE, menu
     menu.disable()
-    GAME = Game(surface, W_HEIGHT_SIZE, W_WIDTH_SIZE, level_id+1)
+    GAME = Game(surface, W_HEIGHT_SIZE, W_WIDTH_SIZE, level_id)
     CURRENT_STATE = 'INGAME'
 
 free_play_menu = pygame_menu.Menu('Bloxorz', W_WIDTH_SIZE, W_HEIGHT_SIZE,
@@ -87,7 +88,7 @@ for r_id in range(math.ceil(NUMBER_OF_LEVELS/LEVEL_PER_ROW)):
     min((r_id+1)*LEVEL_PER_ROW,NUMBER_OF_LEVELS)):
         btn = free_play_menu.add.button(f' {level_id+1:02d} ',
                                         free_play_chosen_level,
-                                        level_id)
+                                        level_id+1)
         btn.set_margin(0, 0)
         btn.set_padding((4,8))
         btn.set_selection_effect(pygame_menu.widgets.NoneSelection())
@@ -102,7 +103,10 @@ free_play_menu.add.button('BACK', pygame_menu.events.BACK,font_size=24).translat
 # Algorithm menu
 
 def algorithm_chosen_level(level_id):
-    print(ALGORITHM)
+    global ALGORITHM_STATS, CURRENT_STATE, ALGORITHM, menu
+    ALGORITHM_STATS = AlgorithmStats(surface, W_HEIGHT_SIZE, W_WIDTH_SIZE, level_id, ALGORITHM)
+    menu.disable()
+    CURRENT_STATE = 'VIEWING_STATS_ALGORITHM'
 
 def chosen_algorithm(selected_value, algorithm, **kwargs):
     global ALGORITHM
@@ -128,7 +132,7 @@ for r_id in range(math.ceil(NUMBER_OF_LEVELS/LEVEL_PER_ROW)):
     min((r_id+1)*LEVEL_PER_ROW,NUMBER_OF_LEVELS)):
         btn = algorithm_menu.add.button(f' {level_id+1:02d} ',
                                         algorithm_chosen_level,
-                                        level_id)
+                                        level_id+1)
         btn.set_margin(0, 0)
         btn.set_padding((4,8))
         btn.set_selection_effect(pygame_menu.widgets.NoneSelection())
@@ -180,7 +184,7 @@ menu.add.button('QUIT', pygame_menu.events.EXIT)
 if __name__ == '__main__':
     while True:
         # tick clock
-        clock.tick(FPS)
+        deltatime = clock.tick(FPS)
 
         surface.fill(COLOR_BACKGROUND)
 
@@ -188,6 +192,19 @@ if __name__ == '__main__':
         if CURRENT_STATE == 'INGAME':
             GAME.process(events)
             if GAME.should_quit():
+                CURRENT_STATE = 'MENU'
+                menu.enable()
+        elif CURRENT_STATE == 'VIEWING_STATS_ALGORITHM':
+            ALGORITHM_STATS.process(events)
+            if ALGORITHM_STATS.should_quit():
+                CURRENT_STATE = 'MENU'
+                menu.enable()
+            elif ALGORITHM_STATS.should_show():
+                CURRENT_STATE = 'VIEWING_ALGORITHM'
+                ALGORITHM_SHOW = AlgorithmShow(surface, W_HEIGHT_SIZE, W_WIDTH_SIZE, ALGORITHM_STATS.problem.level.level, ALGORITHM_STATS.get_solution(), 400)
+        elif CURRENT_STATE == 'VIEWING_ALGORITHM':
+            ALGORITHM_SHOW.process(events, deltatime)
+            if ALGORITHM_SHOW.should_quit():
                 CURRENT_STATE = 'MENU'
                 menu.enable()
 

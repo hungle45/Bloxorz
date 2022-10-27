@@ -23,6 +23,10 @@ class Action:
             return a2 == Action.SWITCH
         return False
 
+    @staticmethod
+    def get_action_set():
+        return [Action.UP,Action.DOWN,Action.LEFT,Action.RIGHT,Action.SWITCH]
+
 
 class State:
     def __init__(self, cur:list, goal: list, board_state: dict):
@@ -216,7 +220,7 @@ class Blozorx:
             elif trigger_type == self.TRIGGER_TYPE_INT_MAP['unhide']:
                 state.board_state[tx,ty] = True
             elif trigger_type == self.TRIGGER_TYPE_INT_MAP['toggle']:
-                state.board_state[tx,ty] = not state.board_state[tx,ty]
+                state.board_state[tx,ty] ^= True
         
     def _trigger_x_btn_if_possible(self, x, y, state:State):
         if self.board[x,y] != self.CELL_TYPE_INT_MAP['x_btn']: return
@@ -227,7 +231,7 @@ class Blozorx:
             elif trigger_type == self.TRIGGER_TYPE_INT_MAP['unhide']:
                 state.board_state[tx,ty] = True
             elif trigger_type == self.TRIGGER_TYPE_INT_MAP['toggle']:
-                state.board_state[tx,ty] = not state.board_state[tx,ty]
+                state.board_state[tx,ty] ^= True
 
     def _trigger_split_btn_if_possible(self, x, y, state:State):
         if self.board[x,y] != self.CELL_TYPE_INT_MAP['split_btn']: return

@@ -39,6 +39,12 @@ class Game:
         self.over = False # whether game is end
         self.ESC  = False
 
+    def do_action_if_posible(self, action):
+        can_do,_ = self.problem.do_action_if_possible(self.state, action, True)
+        if can_do:
+            self.moves += 1
+        return can_do
+
     def process_input(self, events):
         for event in events:
             if event.type == pygame.KEYDOWN:
@@ -172,7 +178,7 @@ class Game:
         else:
             msg = f'Moves: {self.moves:05d}'
 
-        text = self.FONT.render(msg, 230, (255, 255, 255))
+        text = self.FONT.render(msg, True, (255, 255, 255))
         text_rect = text.get_rect(center=(self.W_WIDTH_SIZE/2, self.W_HEIGHT_SIZE - 35))
         self.surface.blit(text, text_rect)
 
