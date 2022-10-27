@@ -1,84 +1,64 @@
+
 ----Level 01----
-Explored: 49 nodes
-Step num: 7
-Step : R-D-D-R-R-D-R
-Time : 4ms
+NO SOLUTION FOUND!
 
 ----Level 02----
-Explored: 264 nodes
-Step num: 17
-Step : U-R-D-R-R-R-R-U-U-D-R-D-R-R-U-R-U
-Time : 21ms
+NO SOLUTION FOUND!
 
 ----Level 03----
-Explored: 82 nodes
-Step num: 19
-Step : U-L-D-R-U-R-R-R-R-U-U-R-R-R-D-D-D-R-U
-Time : 4ms
+NO SOLUTION FOUND!
 
 ----Level 04----
-Explored: 69 nodes
-Step num: 28
-Step : U-L-U-R-R-U-R-R-R-R-R-R-D-R-D-D-D-D-D-R-U-L-L-L-L-L-L-D
-Time : 3ms
+NO SOLUTION FOUND!
 
 ----Level 05----
-Explored: 309 nodes
-Step num: 33
-Step : L-L-L-L-R-L-L-L-L-D-R-D-D-R-R-R-R-D-R-R-R-R-L-L-L-L-D-L-L-L-L-L-L
-Time : 21ms
+NO SOLUTION FOUND!
 
 ----Level 06----
-Explored: 103 nodes
-Step num: 35
-Step : R-R-R-D-D-R-D-D-R-D-R-U-L-L-L-U-U-L-U-U-U-R-R-D-R-R-U-L-D-D-R-R-D-D-R
-Time : 5ms
+NO SOLUTION FOUND!
 
 ----Level 07----
-Explored: 174 nodes
-Step num: 44
-Step : D-L-U-R-R-R-R-R-D-R-L-U-L-L-L-L-L-D-R-D-R-D-R-R-R-U-U-R-D-L-U-R-U-U-R-R-R-D-R-D-R-D-L-U
-Time : 12ms
+NO SOLUTION FOUND!
 
 ----Level 08----
-Explored: 698 nodes
-Step num: 11
-Step : R-R-D-S-U-U-U-U-D-R-R
-Time : 71ms
+NO SOLUTION FOUND!
 
 ----Level 09----
-Explored: 1259 nodes
-Step num: 25
-Step : R-D-R-R-R-R-R-R-U-R-D-R-R-R-R-R-U-S-D-L-L-L-L-L-D
-Time : 117ms
+NO SOLUTION FOUND!
 
 ----Level 10----
-Explored: 5782 nodes
-Step num: 58
-Step : R-R-L-D-D-D-R-D-D-D-D-D-L-L-L-L-U-L-L-L-D-U-R-R-R-D-R-S-D-D-R-R-D-R-D-D-D-D-D-L-L-R-U-R-U-U-U-U-L-L-U-L-D-L-L-L-L-L
-Time : 598ms
+NO SOLUTION FOUND!
 
 ----Level 11----
-Explored: 187 nodes
-Step num: 47
-Step : R-R-R-R-U-L-D-D-D-R-R-R-D-L-U-L-L-L-U-U-R-U-R-R-D-R-U-L-L-L-D-D-L-L-L-U-U-R-U-U-L-D-R-U-R-D-L
-Time : 10ms
+NO SOLUTION FOUND!
 
 ----Level 12----
-Explored: 306 nodes
-Step num: 65
-Step : L-D-R-U-R-U-R-U-L-D-R-U-R-U-R-R-R-D-D-D-L-U-R-U-U-U-L-L-L-R-R-R-D-D-D-L-D-R-U-R-D-L-U-U-U-R-R-U-D-L-D-D-D-L-U-R-U-L-U-L-L-L-D-D-L
-Time : 19ms
+NO SOLUTION FOUND!
 
 ----Level 13----
-Explored: 133 nodes
-Step num: 46
-Step : U-U-L-D-R-D-R-D-L-U-U-U-U-L-L-L-L-L-L-L-D-D-D-R-U-L-D-R-D-D-R-D-D-R-U-R-R-R-R-R-U-L-D-L-U-U
-Time : 8ms
+NO SOLUTION FOUND!
 
 ----Level 14----
-Explored: 459 nodes
-Step num: 67
-Step : R-R-R-R-U-L-L-D-R-R-R-D-D-D-D-L-L-L-D-R-U-R-R-U-U-D-D-L-L-D-R-D-R-R-L-L-U-L-L-U-R-R-R-U-U-U-U-L-L-L-L-L-L-U-R-D-L-L-L-L-L-D-D-D-R-D-R
-Time : 31ms
+NO SOLUTION FOUND!
 
+----Level 15----
+Explored: 1472 nodes
+ERROR!
+
+----Level 16----
+Explored: 473 nodes
+ERROR!
+
+----Level 17----
+Explored: 433 nodes
+ERROR!
+
+----Level 18----
+ERROR!
+
+----Level 19----
+ERROR!
+
+----Level 20----
+Explored: 1 nodes
+ERROR!
