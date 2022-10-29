@@ -1,5 +1,7 @@
 import pygame
 import time
+import multiprocessing
+from multiprocessing.connection import Connection
 from collections import deque,defaultdict
 
 import numpy as np
@@ -24,19 +26,36 @@ class Algorithm:
         self.name = algorithm
         self.algorithm = getattr(self, self.ALGORITHM_FUNCTION_MAP[algorithm])
 
-    def solve(self, problem:Blozorx, state:State = None):
-        return self.algorithm(problem,state)
+    def solve(self, problem:Blozorx, state:State = None, sender: Connection = None):
+        return self.algorithm(problem,state,sender)
 
     @staticmethod
-    def breadth_first_search(problem:Blozorx, state:State = None):
+    def breadth_first_search(problem:Blozorx, state:State = None, sender: Connection = None):
         # return explore_node_num, path, exe_time (s)
         start_time_s = time.time()
         explore_node_num = 0
+        def _return(explore_node_num,path=None,is_done=False):
+            nonlocal sender,start_time_s
+            if sender is not None:
+                return_dict = {
+                    'solution_cost': explore_node_num,
+                    'path': path,
+                    'time': time.time() - start_time_s,
+                    'msg': f'Explored Node: {explore_node_num}',
+                    'is_done': is_done
+                }
+                try:
+                    sender.send(return_dict)
+                except:
+                    pass 
+            else:
+                return explore_node_num,path,time.time() - start_time_s
 
         if state is None:
             state = problem.init_state
         if state.is_goal_state():
-            return 0,'',time.time() - start_time_s
+            # return 0,'',time.time()-start_time_s
+            return _return(0, '', True)
 
         q = deque()
         q.append(('',state))
@@ -56,19 +75,23 @@ class Algorithm:
         while len(q) > 0:
             path,cur_state = q.popleft()
             explore_node_num += 1
+            if explore_node_num % 1000 == 0:
+                _return(explore_node_num)
 
             for action in problem.get_possible_actions(cur_state):
                 next_state = problem.do_action(cur_state, action, inplace=False)
 
                 if next_state.is_goal_state():
-                    return explore_node_num, path+action[0], time.time() - start_time_s
+                    # return explore_node_num, path+action[0], time.time() - start_time_s
+                    return _return(explore_node_num, path+action[0], True)
                 if _is_visited(next_state): 
                     continue
 
                 _add_visited_state(next_state)
                 q.append((path+action[0],next_state))
         
-        return explore_node_num, None, time.time() - start_time_s
+        # return explore_node_num, None, time.time() - start_time_s
+        return _return(explore_node_num,None,True)
 
 
     @staticmethod
@@ -97,13 +120,67 @@ class AlgorithmStats:
         self.medium_font = pygame.font.Font(None, 40)
         self.small_font = pygame.font.Font(None, 30, bold=False)
 
-        self.run_algorithm()
+        self.solution_cost = None
+        self.path = None
+        self.exe_time_s = None
 
         self.ESC  = False
         self.show = False
 
+        self.run_algorithm()
+
+    def draw_loading_screen(self, receiver: Connection):
+        msg = 'Loading...'
+        _fps = 10
+        _clock = pygame.time.Clock()
+        
+        while True:
+            for _e in pygame.event.get():
+                if _e.type == pygame.QUIT:
+                    self.ESC = True
+                    return
+                if _e.type == pygame.KEYDOWN:
+                    if _e.key == pygame.K_ESCAPE:
+                        self.ESC = True
+                        return
+            if receiver.poll():
+                return_dict = receiver.recv()
+                if return_dict['is_done']:
+                    self.solution_cost = return_dict['solution_cost']
+                    self.path = return_dict['path']
+                    self.exe_time_s = return_dict['time']
+                    return
+                else:
+                    msg = return_dict['msg']
+
+            self.surface.fill(WHITE)
+            # Level header
+            text = self.big_font.render(f"Level: {self.problem.level.level:02d}", True, LIGHT_BLUE)
+            text_rect = text.get_rect(center=(self.W_WIDTH_SIZE/2, 80))
+            self.surface.blit(text, text_rect)
+
+            # Algorithm header
+            text = self.medium_font.render(f"Algorithm: {self.algorithm.name}", True, LIGHT_BLUE)
+            text_rect = text.get_rect(center=(self.W_WIDTH_SIZE/2, 125))
+            self.surface.blit(text, text_rect)
+
+            # Algorithm Calculating Status
+            text = self.medium_font.render(msg, True, BLACK)
+            text_rect = text.get_rect(center=(self.W_WIDTH_SIZE/2, self.W_HEIGHT_SIZE/2))
+            self.surface.blit(text, text_rect)
+
+            pygame.display.update()
+            _clock.tick(_fps)
+
     def run_algorithm(self):
-        self.solution_cost, self.path, self.exe_time_s = self.algorithm.solve(self.problem)
+        # self.solution_cost, self.path, self.exe_time_s = self.algorithm.solve(self.problem)
+        receiver, sender = multiprocessing.Pipe(duplex=False)
+
+        solver = multiprocessing.Process(target=self.algorithm.solve, args=(self.problem,None,sender))
+        solver.daemon = True
+        solver.start()
+
+        self.draw_loading_screen(receiver)
 
     def get_solution(self):
         return self.path
@@ -118,7 +195,7 @@ class AlgorithmStats:
                 elif event.key == pygame.K_ESCAPE:
                     self.ESC = True
 
-    def draw(self): 
+    def draw(self):
         self.surface.fill(WHITE)
 
         # Level header
@@ -132,15 +209,16 @@ class AlgorithmStats:
         self.surface.blit(text, text_rect)
 
         # Solution Cost
-        text = self.medium_font.render(f"{self.SOLUTION_COST_MAP[self.algorithm.name]}: {self.solution_cost}", True, BLACK)
-        text_rect = text.get_rect(center=(self.W_WIDTH_SIZE/2, 250))
-        self.surface.blit(text, text_rect)
-            
-        # Solution Statistics
-            # Time to Solve
-        text = self.medium_font.render(f"Time exec: {int(self.exe_time_s*1000)}ms", True, BLACK)
-        text_rect = text.get_rect(center=(self.W_WIDTH_SIZE/2, 300))
-        self.surface.blit(text, text_rect)
+        if self.solution_cost is not None:
+            text = self.medium_font.render(f"{self.SOLUTION_COST_MAP[self.algorithm.name]}: {self.solution_cost}", True, BLACK)
+            text_rect = text.get_rect(center=(self.W_WIDTH_SIZE/2, 250))
+            self.surface.blit(text, text_rect)
+        
+        # Time to Solve
+        if self.exe_time_s is not None:
+            text = self.medium_font.render(f"Time exec: {int(self.exe_time_s*1000)}ms", True, BLACK)
+            text_rect = text.get_rect(center=(self.W_WIDTH_SIZE/2, 300))
+            self.surface.blit(text, text_rect)
 
         if self.path is not None:
             # Press N to VIEW NODES EXPLORED.
@@ -250,12 +328,13 @@ class AlgorithmShow:
 
 if __name__ == '__main__':
     with open('results/bfs.txt','w') as f:
-        for level in range(20):
+        for level in range(30):
             try:
                 f.write(f'\n----Level {level+1:02d}----\n')
                 problem = Blozorx(level+1)
                 explore_node_num, path, exe_time_s = Algorithm('BFS').solve(problem)
-                if path is None:
+                print(f'Level {level+1:02d} {int(exe_time_s*1000)}ms')
+                if path is not None:
                     f.write(f'Explored: {explore_node_num} nodes\n')
                     f.write(f'Step num: {len(path)}\n')
                     f.write(f'Step : {"-".join(path)}\n')
@@ -264,4 +343,3 @@ if __name__ == '__main__':
                     f.write(f'NO SOLUTION FOUND!\n')
             except:
                 f.write('ERROR!\n')
-            print(f'Level {level+1:02d} {int(exe_time_s*1000)}ms')
