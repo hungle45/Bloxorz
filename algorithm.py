@@ -7,7 +7,7 @@ from collections import deque,defaultdict
 import numpy as np
 
 from problem import Action,Blozorx,State
-from game import Game
+from game import GameUI
 
 
 WHITE = (250,250,250)
@@ -100,7 +100,7 @@ class Algorithm:
         return 0,'',1
 
 
-class AlgorithmStats:
+class AlgorithmStatsUI:
     SOLUTION_COST_MAP = {
         'BFS': 'Node explored',
         'GA': 'Total generation'
@@ -256,9 +256,9 @@ class AlgorithmStats:
         return self.show
 
 
-class AlgorithmShow:
+class AlgorithmShowUI:
     def __init__(self, surface, W_HEIGHT_SIZE, W_WIDTH_SIZE, level_id, solution, transition_speed_ms):
-        self.game = Game(surface, W_HEIGHT_SIZE, W_WIDTH_SIZE, level_id)
+        self.game = GameUI(surface, W_HEIGHT_SIZE, W_WIDTH_SIZE, level_id)
         self.surface = surface
 
         self.W_HEIGHT_SIZE = W_HEIGHT_SIZE

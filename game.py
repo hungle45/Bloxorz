@@ -15,7 +15,7 @@ FRAGILE_CELL_COLOR = (242, 183, 5)
 GAME_COLOR_BACKGROUND = (0,0,139)
 
 
-class Game:
+class GameUI:
     def __init__(self, surface, W_HEIGHT_SIZE, W_WIDTH_SIZE, level_id):
         self.surface = surface
         self.W_HEIGHT_SIZE = W_HEIGHT_SIZE
