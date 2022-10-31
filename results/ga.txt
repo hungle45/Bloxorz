@@ -1,0 +1,107 @@
+
+----Level 01----
+ERROR!
+
+----Level 02----
+ERROR!
+
+----Level 03----
+ERROR!
+
+----Level 04----
+ERROR!
+
+----Level 05----
+ERROR!
+
+----Level 06----
+ERROR!
+
+----Level 07----
+NO SOLUTION FOUND!
+Time : 94628ms
+
+----Level 08----
+ERROR!
+
+----Level 09----
+ERROR!
+
+----Level 10----
+NO SOLUTION FOUND!
+Time : 96397ms
+
+----Level 11----
+NO SOLUTION FOUND!
+Time : 91497ms
+
+----Level 12----
+NO SOLUTION FOUND!
+Time : 119029ms
+
+----Level 13----
+NO SOLUTION FOUND!
+Time : 92002ms
+
+----Level 14----
+NO SOLUTION FOUND!
+Time : 89128ms
+
+----Level 15----
+NO SOLUTION FOUND!
+Time : 93103ms
+
+----Level 16----
+ERROR!
+
+----Level 17----
+NO SOLUTION FOUND!
+Time : 91517ms
+
+----Level 18----
+ERROR!
+
+----Level 19----
+ERROR!
+
+----Level 20----
+NO SOLUTION FOUND!
+Time : 102672ms
+
+----Level 21----
+NO SOLUTION FOUND!
+Time : 98744ms
+
+----Level 22----
+NO SOLUTION FOUND!
+Time : 106464ms
+
+----Level 23----
+ERROR!
+
+----Level 24----
+ERROR!
+
+----Level 25----
+NO SOLUTION FOUND!
+Time : 107400ms
+
+----Level 26----
+NO SOLUTION FOUND!
+Time : 104116ms
+
+----Level 27----
+NO SOLUTION FOUND!
+Time : 108167ms
+
+----Level 28----
+NO SOLUTION FOUND!
+Time : 97755ms
+
+----Level 29----
+NO SOLUTION FOUND!
+Time : 94149ms
+
+----Level 30----
+NO SOLUTION FOUND!
+Time : 93899ms

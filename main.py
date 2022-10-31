@@ -5,7 +5,7 @@ import pygame
 import pygame_menu
 
 from game import GameUI
-from algorithm import AlgorithmStatsUI,AlgorithmShowUI
+from algorithmUI import AlgorithmStatsUI,AlgorithmShowUI
 
 # Global Variables
 CURRENT_STATE = 'MENU'
@@ -201,7 +201,7 @@ if __name__ == '__main__':
                 menu.enable()
             elif ALGORITHM_STATS.should_show():
                 CURRENT_STATE = 'VIEWING_ALGORITHM'
-                ALGORITHM_SHOW = AlgorithmShowUI(surface, W_HEIGHT_SIZE, W_WIDTH_SIZE, ALGORITHM_STATS.problem.level.level, ALGORITHM_STATS.get_solution(), 400)
+                ALGORITHM_SHOW = AlgorithmShowUI(surface, W_HEIGHT_SIZE, W_WIDTH_SIZE, ALGORITHM_STATS.problem.level.level, ALGORITHM_STATS.get_solution(), 300)
         elif CURRENT_STATE == 'VIEWING_ALGORITHM':
             ALGORITHM_SHOW.process(events, deltatime)
             if ALGORITHM_SHOW.should_quit():

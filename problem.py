@@ -27,6 +27,12 @@ class Action:
     def get_action_set():
         return [Action.UP,Action.DOWN,Action.LEFT,Action.RIGHT,Action.SWITCH]
 
+    @staticmethod
+    def decode_action(coded_action):
+        for action in Action.get_action_set():
+            if action[0] == coded_action:
+                return action
+
 
 class State:
     def __init__(self, cur:list, goal: list, board_state: dict):
