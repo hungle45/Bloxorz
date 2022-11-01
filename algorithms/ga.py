@@ -28,14 +28,9 @@ class Individual:
         for gene in self.chromosome:
             action = Action.decode_action(gene)
             problem.do_action_if_possible(state, action, inplace=True)
+            if state.is_goal_state():
+                break
     
-        # if state.is_standing_state():
-        #     loss = abs(state.cur[0] - problem.init_state.goal[0]) + abs(state.cur[1] - problem.init_state.goal[1])
-        # else:
-        #     loss = abs((state.cur[0] + state.cur[2])/2 - problem.init_state.goal[0]) \
-        #         + abs((state.cur[1] + state.cur[3])/2 - problem.init_state.goal[1])
-        
-        # self.fitness = 1/(loss+1e-6)
         self.fitness = Individual.fitness_function(problem, state)
         self.is_win = state.is_goal_state()
 
@@ -115,6 +110,8 @@ class GenericAlgorithm:
                     can_do,_ = problem.do_action_if_possible(_state, action, inplace=True) 
                     if can_do:
                         optimal_path += coded_action
+                    if _state.is_goal_state():
+                        break
                 path = optimal_path
 
             if sender is not None:
@@ -181,7 +178,7 @@ class GenericAlgorithm:
 generic_algorithm = GenericAlgorithm()
 
 if __name__ == '__main__':
-    generation_num, path, exe_time = GenericAlgorithm()(Blozorx(2),show_logs=True)
+    generation_num, path, exe_time = GenericAlgorithm()(Blozorx(30),show_logs=True)
     print(generation_num)
     print(path)
     print(exe_time)

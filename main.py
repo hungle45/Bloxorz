@@ -163,9 +163,15 @@ if __name__ == '__main__':
                             theme=CUSTOME_THEME,
                             mouse_motion_selection=True)
 
-    about_menu.add.label('ABOUT',font_size=40)
-    about_menu.add.button('BACK', pygame_menu.events.BACK)
+    about_menu.add.label('ABOUT',font_size=40).translate(0, -40)
 
+    about_menu.add.label('A Blozorx solver using BFS and GA',font_size=25).translate(0, -20)
+
+    about_menu.add.label('Author:  Le Nguyen Hung                 -  2013360',font_size=20)
+    about_menu.add.label('                Nguyen Van Bao Nguyen  -  2013930',font_size=20)
+    about_menu.add.label('                Vo Phan Anh Quan             -  2014285',font_size=20)
+
+    about_menu.add.button('BACK', pygame_menu.events.BACK, font_size=24).translate(0, 40)
 
     # -----------------------------------------------------------------------------
     # Main menu

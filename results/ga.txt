@@ -1,107 +1,30 @@
 
 ----Level 01----
-ERROR!
+Generation num: 6
+Step num: 9
+Step : R-R-L-D-D-R-R-D-R
+Time : 125ms
 
 ----Level 02----
-ERROR!
+Generation num: 159
+Step num: 77
+Step : R-U-L-U-R-D-U-D-L-R-L-D-U-D-R-U-L-R-U-D-D-R-R-R-R-L-R-L-D-U-U-D-U-D-U-U-R-U-D-L-D-U-U-U-D-R-D-R-U-D-L-L-D-U-U-R-L-R-L-R-U-D-D-L-D-D-R-U-D-U-R-L-R-R-R-U-U
+Time : 11883ms
 
 ----Level 03----
-ERROR!
+Generation num: 96
+Step num: 47
+Step : R-U-U-L-R-L-R-D-R-R-R-U-R-D-U-L-L-D-R-U-D-U-U-L-R-L-R-R-R-L-L-R-R-L-L-R-R-R-L-R-D-D-D-R-L-R-U
+Time : 4965ms
 
 ----Level 04----
-ERROR!
+Generation num: 164
+Step num: 50
+Step : U-R-D-U-L-L-D-R-L-U-D-U-U-R-R-U-R-R-R-L-R-R-L-R-R-R-D-U-D-R-D-D-D-D-U-D-D-R-L-R-U-L-L-L-L-L-R-L-L-D
+Time : 12967ms
 
 ----Level 05----
-ERROR!
-
-----Level 06----
-ERROR!
-
-----Level 07----
-NO SOLUTION FOUND!
-Time : 94628ms
-
-----Level 08----
-ERROR!
-
-----Level 09----
-ERROR!
-
-----Level 10----
-NO SOLUTION FOUND!
-Time : 96397ms
-
-----Level 11----
-NO SOLUTION FOUND!
-Time : 91497ms
-
-----Level 12----
-NO SOLUTION FOUND!
-Time : 119029ms
-
-----Level 13----
-NO SOLUTION FOUND!
-Time : 92002ms
-
-----Level 14----
-NO SOLUTION FOUND!
-Time : 89128ms
-
-----Level 15----
-NO SOLUTION FOUND!
-Time : 93103ms
-
-----Level 16----
-ERROR!
-
-----Level 17----
-NO SOLUTION FOUND!
-Time : 91517ms
-
-----Level 18----
-ERROR!
-
-----Level 19----
-ERROR!
-
-----Level 20----
-NO SOLUTION FOUND!
-Time : 102672ms
-
-----Level 21----
-NO SOLUTION FOUND!
-Time : 98744ms
-
-----Level 22----
-NO SOLUTION FOUND!
-Time : 106464ms
-
-----Level 23----
-ERROR!
-
-----Level 24----
-ERROR!
-
-----Level 25----
-NO SOLUTION FOUND!
-Time : 107400ms
-
-----Level 26----
-NO SOLUTION FOUND!
-Time : 104116ms
-
-----Level 27----
-NO SOLUTION FOUND!
-Time : 108167ms
-
-----Level 28----
-NO SOLUTION FOUND!
-Time : 97755ms
-
-----Level 29----
-NO SOLUTION FOUND!
-Time : 94149ms
-
-----Level 30----
-NO SOLUTION FOUND!
-Time : 93899ms
+Generation num: 375
+Step num: 120
+Step : L-L-R-L-L-L-R-R-L-R-L-R-R-R-L-L-L-R-L-L-L-L-R-R-R-R-L-L-L-R-R-L-R-R-L-L-R-L-L-L-D-U-L-L-D-U-D-R-L-R-R-D-L-U-U-R-D-L-R-D-R-L-R-R-R-L-R-R-L-R-R-L-R-D-U-L-R-R-L-D-U-L-L-R-R-R-L-R-D-L-R-R-R-L-L-L-L-D-L-R-U-U-D-D-L-R-R-L-R-L-L-R-R-L-L-L-L-L-L-L
+Time : 63518ms

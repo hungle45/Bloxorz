@@ -47,14 +47,14 @@ if __name__ == '__main__':
 
     # GA
     with open('results/ga.txt','w') as f:
-        for level in range(30):
+        for level in range(5):
             try:
                 f.write(f'\n----Level {level+1:02d}----\n')
                 problem = Blozorx(level+1)
                 explore_node_num, path, exe_time_s = Algorithm('GA').solve(problem)
                 print(f'Level {level+1:02d} {int(exe_time_s*1000)}ms')
                 if path is not None:
-                    f.write(f'Generation num: {explore_node_num} nodes\n')
+                    f.write(f'Generation num: {explore_node_num}\n')
                     f.write(f'Step num: {len(path)}\n')
                     f.write(f'Step : {"-".join(path)}\n')
                 else:
