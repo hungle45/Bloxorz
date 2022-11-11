@@ -5,8 +5,8 @@
       [1, 2, [[3, 4,"unhide"]]]
     ],
     "o_btn_list": [
-        [1, 13,[[5, 1,"unhide"],[5, 2,"unhide"],[9,8,"toggle"]]],
-        [3, 14, [[2, 10,"hide"],[2, 11,"hide"],[3,14,"hide"]]],  
+        [1, 13,[[6, 1,"unhide"],[6, 2,"unhide"],[9,8,"toggle"]]],
+        [3, 14, [[2, 10,"hide"],[2, 11,"hide"],[6,14,"hide"]]],  
         [5, 0, [[6, 1,"hide"],[6, 2,"hide"],[3,0,"unhide"]]]
     ],
     "split_btn_list": [

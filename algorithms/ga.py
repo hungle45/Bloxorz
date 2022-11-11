@@ -138,7 +138,7 @@ class GenericAlgorithm:
                     individual.increase_move(self.increased_move)
 
             # calc fitness
-            population_fitness = self._calc_fitness()
+            population_fitness = np.array(self._calc_fitness())
             fitness_individual = self.population[np.argmax(population_fitness)]
             highest_fitness = max(population_fitness)
 
@@ -153,9 +153,9 @@ class GenericAlgorithm:
             _return(generation_num, length=len(self.population[0].chromosome) ,fitness=highest_fitness)
 
             # probability that the individual should be selected as parent
-            parent_probs = np.exp(population_fitness)
-            parent_probs /= parent_probs.sum()
-            # parent_probs = [fitness/sum(population_fitness) for fitness in population_fitness]
+            # parent_probs = np.exp(population_fitness - population_fitness.min())
+            # parent_probs /= parent_probs.sum()
+            parent_probs = population_fitness / population_fitness.sum()
             
             new_population = [] 
             for _ in range(0,self.population_size,2):

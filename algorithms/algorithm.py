@@ -29,14 +29,14 @@ class Algorithm:
 if __name__ == '__main__':
     # BFS
     # with open('results/bfs.txt','w') as f:
-    #     for level in range(30):
+    #     for level in range(33):
     #         try:
     #             f.write(f'\n----Level {level+1:02d}----\n')
     #             problem = Blozorx(level+1)
     #             explore_node_num, path, exe_time_s = Algorithm('BFS').solve(problem)
     #             print(f'Level {level+1:02d} {int(exe_time_s*1000)}ms')
+    #             f.write(f'Explored: {explore_node_num} nodes\n')
     #             if path is not None:
-    #                 f.write(f'Explored: {explore_node_num} nodes\n')
     #                 f.write(f'Step num: {len(path)}\n')
     #                 f.write(f'Step : {"-".join(path)}\n')
     #             else:
@@ -47,18 +47,19 @@ if __name__ == '__main__':
 
     # GA
     with open('results/ga.txt','w') as f:
-        for level in range(5):
+        for level in range(33):
             try:
                 f.write(f'\n----Level {level+1:02d}----\n')
                 problem = Blozorx(level+1)
                 explore_node_num, path, exe_time_s = Algorithm('GA').solve(problem)
                 print(f'Level {level+1:02d} {int(exe_time_s*1000)}ms')
+                f.write(f'Generation num: {explore_node_num}\n')
                 if path is not None:
-                    f.write(f'Generation num: {explore_node_num}\n')
                     f.write(f'Step num: {len(path)}\n')
                     f.write(f'Step : {"-".join(path)}\n')
                 else:
                     f.write(f'NO SOLUTION FOUND!\n')
                 f.write(f'Time : {int(exe_time_s*1000)}ms\n')
-            except:
+            except Exception as e:
+                print(e)
                 f.write('ERROR!\n')

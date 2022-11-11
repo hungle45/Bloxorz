@@ -1,30 +1,174 @@
 
 ----Level 01----
-Generation num: 6
-Step num: 9
-Step : R-R-L-D-D-R-R-D-R
-Time : 125ms
+Generation num: 2
+Step num: 7
+Step : R-D-R-R-D-D-R
+Time : 56ms
 
 ----Level 02----
-Generation num: 159
-Step num: 77
-Step : R-U-L-U-R-D-U-D-L-R-L-D-U-D-R-U-L-R-U-D-D-R-R-R-R-L-R-L-D-U-U-D-U-D-U-U-R-U-D-L-D-U-U-U-D-R-D-R-U-D-L-L-D-U-U-R-L-R-L-R-U-D-D-L-D-D-R-U-D-U-R-L-R-R-R-U-U
-Time : 11883ms
+Generation num: 79
+Step num: 36
+Step : U-R-L-D-R-R-R-R-L-L-R-R-U-R-U-D-D-R-L-R-R-R-R-L-R-U-D-U-L-D-L-R-L-R-U-U
+Time : 3885ms
 
 ----Level 03----
-Generation num: 96
-Step num: 47
-Step : R-U-U-L-R-L-R-D-R-R-R-U-R-D-U-L-L-D-R-U-D-U-U-L-R-L-R-R-R-L-L-R-R-L-L-R-R-R-L-R-D-D-D-R-L-R-U
-Time : 4965ms
+Generation num: 70
+Step num: 31
+Step : U-R-R-D-L-U-R-R-L-R-R-R-L-R-U-U-L-D-R-U-R-R-R-L-L-R-R-D-D-D-R
+Time : 3135ms
 
 ----Level 04----
-Generation num: 164
-Step num: 50
-Step : U-R-D-U-L-L-D-R-L-U-D-U-U-R-R-U-R-R-R-L-R-R-L-R-R-R-D-U-D-R-D-D-D-D-U-D-D-R-L-R-U-L-L-L-L-L-R-L-L-D
-Time : 12967ms
+Generation num: 233
+Step num: 102
+Step : U-U-R-L-D-L-U-D-U-R-R-U-D-U-R-R-R-L-L-R-R-R-R-L-R-R-D-R-L-R-L-R-D-U-D-U-D-D-D-U-D-U-U-D-D-D-D-R-L-D-U-R-L-D-U-D-U-U-D-R-U-L-U-U-D-U-D-U-D-D-R-D-L-R-L-R-U-D-L-R-L-R-L-D-U-R-U-L-L-L-L-L-R-L-D-U-R-R-L-L-L-D
+Time : 22942ms
 
 ----Level 05----
-Generation num: 375
-Step num: 120
-Step : L-L-R-L-L-L-R-R-L-R-L-R-R-R-L-L-L-R-L-L-L-L-R-R-R-R-L-L-L-R-R-L-R-R-L-L-R-L-L-L-D-U-L-L-D-U-D-R-L-R-R-D-L-U-U-R-D-L-R-D-R-L-R-R-R-L-R-R-L-R-R-L-R-D-U-L-R-R-L-D-U-L-L-R-R-R-L-R-D-L-R-R-R-L-L-L-L-D-L-R-U-U-D-D-L-R-R-L-R-L-L-R-R-L-L-L-L-L-L-L
-Time : 63518ms
+Generation num: 265
+Step num: 110
+Step : L-L-L-R-L-L-R-L-R-L-L-L-R-L-D-L-U-L-D-D-U-R-D-D-R-L-R-R-R-L-L-R-R-L-L-R-R-L-R-L-R-R-R-R-L-D-D-U-U-R-L-D-R-D-L-L-U-D-U-D-R-U-R-R-L-D-L-U-L-D-U-D-R-U-U-L-R-L-D-D-U-U-D-D-L-R-L-L-L-R-R-L-L-R-R-L-L-R-R-L-R-R-U-D-L-L-L-L-L-L
+Time : 32788ms
+
+----Level 06----
+Generation num: 214
+Step num: 99
+Step : R-R-L-R-L-R-L-L-R-L-R-R-R-D-R-L-U-D-U-D-D-U-R-D-D-R-D-D-R-U-L-D-U-L-L-U-U-L-U-D-U-U-U-R-L-R-R-D-R-L-R-R-L-L-R-L-R-R-U-D-L-R-U-D-U-L-L-R-D-D-U-R-L-D-U-D-R-R-L-R-L-L-U-U-L-R-D-D-R-R-D-D-U-R-D-U-L-D-R
+Time : 21050ms
+
+----Level 07----
+Generation num: 500
+NO SOLUTION FOUND!
+Time : 109532ms
+
+----Level 08----
+Generation num: 26
+Step num: 30
+Step : R-R-R-U-L-L-D-D-S-R-U-D-U-U-L-D-D-L-U-D-U-U-R-U-L-U-R-D-R-R
+Time : 737ms
+
+----Level 09----
+Generation num: 344
+Step num: 192
+Step : R-D-U-U-L-R-D-D-U-U-D-D-L-R-R-R-R-R-R-R-U-D-U-D-U-R-S-L-U-R-D-D-S-L-R-S-S-D-R-U-S-R-L-S-U-D-U-L-S-S-D-D-S-S-S-L-R-U-R-U-D-R-L-S-L-S-D-L-R-R-L-R-U-D-L-R-L-R-S-U-L-R-L-R-U-S-L-L-S-L-D-S-L-L-R-S-D-U-D-U-D-R-L-S-L-L-L-D-S-S-S-R-L-R-U-S-U-S-R-L-U-D-R-S-D-S-D-R-U-U-D-D-S-D-L-L-R-L-U-R-R-U-D-S-R-R-R-L-R-L-S-D-L-S-R-D-S-S-S-R-S-S-S-U-L-S-S-S-S-S-U-L-R-S-L-R-S-U-R-S-S-L-S-S-L-U-S-R-R-U-D-D
+Time : 54282ms
+
+----Level 10----
+Generation num: 500
+NO SOLUTION FOUND!
+Time : 115634ms
+
+----Level 11----
+Generation num: 500
+NO SOLUTION FOUND!
+Time : 107609ms
+
+----Level 12----
+Generation num: 500
+NO SOLUTION FOUND!
+Time : 112845ms
+
+----Level 13----
+Generation num: 500
+NO SOLUTION FOUND!
+Time : 101649ms
+
+----Level 14----
+Generation num: 500
+NO SOLUTION FOUND!
+Time : 100487ms
+
+----Level 15----
+Generation num: 500
+NO SOLUTION FOUND!
+Time : 103368ms
+
+----Level 16----
+Generation num: 139
+Step num: 56
+Step : R-L-R-R-R-L-R-R-S-R-D-S-R-U-S-S-S-R-L-L-L-R-L-L-D-U-R-R-R-R-R-L-L-R-L-L-L-R-R-S-D-R-R-R-L-R-L-R-R-R-L-R-R-L-R-R
+Time : 8602ms
+
+----Level 17----
+Generation num: 500
+NO SOLUTION FOUND!
+Time : 106113ms
+
+----Level 18----
+Generation num: 500
+NO SOLUTION FOUND!
+Time : 103702ms
+
+----Level 19----
+Generation num: 500
+NO SOLUTION FOUND!
+Time : 85915ms
+
+----Level 20----
+Generation num: 500
+NO SOLUTION FOUND!
+Time : 102361ms
+
+----Level 21----
+Generation num: 500
+NO SOLUTION FOUND!
+Time : 92161ms
+
+----Level 22----
+Generation num: 500
+NO SOLUTION FOUND!
+Time : 95934ms
+
+----Level 23----
+Generation num: 500
+NO SOLUTION FOUND!
+Time : 106202ms
+
+----Level 24----
+Generation num: 500
+NO SOLUTION FOUND!
+Time : 94218ms
+
+----Level 25----
+Generation num: 500
+NO SOLUTION FOUND!
+Time : 93291ms
+
+----Level 26----
+Generation num: 500
+NO SOLUTION FOUND!
+Time : 94532ms
+
+----Level 27----
+Generation num: 500
+NO SOLUTION FOUND!
+Time : 90648ms
+
+----Level 28----
+Generation num: 500
+NO SOLUTION FOUND!
+Time : 92722ms
+
+----Level 29----
+Generation num: 500
+NO SOLUTION FOUND!
+Time : 95544ms
+
+----Level 30----
+Generation num: 500
+NO SOLUTION FOUND!
+Time : 97206ms
+
+----Level 31----
+Generation num: 500
+NO SOLUTION FOUND!
+Time : 98547ms
+
+----Level 32----
+Generation num: 500
+NO SOLUTION FOUND!
+Time : 113110ms
+
+----Level 33----
+Generation num: 500
+NO SOLUTION FOUND!
+Time : 114047ms
