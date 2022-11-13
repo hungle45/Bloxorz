@@ -15,7 +15,7 @@ Requires Python 3.9.
 
 ## Demo
 <p align="center">
-	<img src="" alt="demo" width="80%">
+	<img src="https://github.com/hungle45/Bloxorz/blob/master/demo.gif" alt="demo" width="50%">
 </p>
 
 ## Preferences:
